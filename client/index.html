@@ -1,20 +1,50 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
   <head>
     <title>Back End Assessment</title>
   </head>
   <body class="container">
     <button id="complimentButton">Get a compliment</button>
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-      document.getElementById("complimentButton").onclick = function () {
-        axios.get("http://localhost:4000/api/compliment/")
-            .then(function (response) {
-              const data = response.data;
-              alert(data);
-            });
+    <br>
+    <br>
+    <button id="addComplimentButton">Add a compliment</button>
+    <form>
+      <input 
+          type='text'
+          id="add"
+          placeholder="What would you like to say? BE NICE!"/>
+    <br>
+    <br>
+    <button id="deleteComplimentButton">Delete a compliment</button>
+    <br>
+    <form>
+      <input 
+          type='text'
+          id="delete"
+          placeholder="Which one would you like to remove?"/>
+    <br>
+    <br>
+    <button id="changeComplimentButton">Change a compliment</button>
+    <br>
+    <form>
+      <input 
+      type='text'
+      id="id"
+      placeholder="which one would you like to change?"/>
+      <br>
+      <input 
+          type='text'
+          id="change"
+          placeholder="How would you like to change this one?"/>
+    <script src="https://unpkg.com/axios/dist/axios.main.js"></script>
+    <script src="main.js"></script>
+       <!-- document.getElementById("complimentButton").onclick = function () {
+         axios.get("http://localhost:4000/api/compliment/")
+             .then(function (response) {
+               const data = response.data;
+               alert(data);
+             });
       };
-    </script>
+    -->
   </body>
 </html>
