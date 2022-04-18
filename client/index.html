@@ -2,42 +2,45 @@
 <html>
   <head>
     <title>Back End Assessment</title>
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body class="container">
+    <h1>F O R T U N E * F O R T U N A</h1>
+    <h3>100% on demand, 100% fake</h3>
+  <!-- <div class="circleBase"> -->
     <button id="complimentButton">Get a compliment</button>
-    <br>
-    <br>
-    <button id="addComplimentButton">Add a compliment</button>
-    <form>
-      <input 
-          type='text'
-          id="add"
-          placeholder="What would you like to say? BE NICE!"/>
-    <br>
-    <br>
-    <button id="deleteComplimentButton">Delete a compliment</button>
-    <br>
-    <form>
-      <input 
-          type='text'
-          id="delete"
-          placeholder="Which one would you like to remove?"/>
-    <br>
-    <br>
-    <button id="changeComplimentButton">Change a compliment</button>
-    <br>
-    <form>
-      <input 
-      type='text'
-      id="id"
-      placeholder="which one would you like to change?"/>
+    <button id="fortuneButton">Get your fake fortune</button>
+
       <br>
-      <input 
-          type='text'
-          id="change"
-          placeholder="How would you like to change this one?"/>
-    <script src="https://unpkg.com/axios/dist/axios.main.js"></script>
-    <script src="main.js"></script>
+      <br>
+    
+    <form id="add-form">
+      <input class="form-input" id="add-text" placeholder="What would you like to happen? BE NICE!"/>
+      <button id="addFortuneButton">Add your fortune</button>
+    </form>
+
+      <br>
+
+    <form id="delete-form">
+      <input tclass="form-input" id="delete-text" placeholder="Which one would you like to remove?"/>
+      <button id="deleteFortuneButton">Delete your fortune</button>
+    </form>
+
+      <br>
+
+    <form id="change-form">
+      <input class="form-input" id="change-id" placeholder="Which one would you like to change?"/>
+      <input class="form-input" id="change-text" placeholder="How would you like to change this one?"/>
+      <button id="changeFortuneButton">Change your fortune</button>
+    </form>
+
+      <br>
+    
+    <section id="fortune-display"></section>
+    <section id="change-zone"></section>
+  <!-- </div>  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./main.js"></script>
        <!-- document.getElementById("complimentButton").onclick = function () {
          axios.get("http://localhost:4000/api/compliment/")
              .then(function (response) {

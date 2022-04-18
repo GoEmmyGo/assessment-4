@@ -1,46 +1,57 @@
-const compliment = require('./compList.json')
-let globalId = 4
+const fortuneList = require('./fortune.json')
+let globalId = fortuneList[fortuneList.length - 1].id + 1
 
 
 module.exports = {
     getCompliment: (req, res) => {
-        // const compliments = [
-        //     "Gee, you're a smart cookie!",
-        //     "Cool shirt!",
-        //     "Your Javascript skills are stellar.",
-        // ];
+        const compliment = [
+            "Gee, you're a smart cookie!",
+            "Cool shirt!",
+            "Your Javascript skills are stellar.",
+            "Lookin SICK, my dude."
+        ];
       
         // choose random compliment
-        let randomIndex = Math.floor(Math.random() * compliment.length);
-        let randomCompliment = compliment[randomIndex];
-        res.status(200).send(randomCompliment);   
+        let randomIndex = Math.floor(Math.random() * compliment.length)
+        let randomCompliment = compliment[randomIndex]
+        res.status(200).send(randomCompliment)
     },
-    deleteCompliment: (req, res) => {
-        let index = compliment.findIndex(elem => elem.id === req.params.id)
-        movies.splice(index, 1)
-        res.status(200).send(compliment)
+    getFortune: (req, res) => {
+        res.status(200).send(fortuneList)
+        // choose random fortune
+        let randomIndex = Math.floor(Math.random() * fortuneList.length)
+        let randomFortune = fortuneList[randomIndex]
+        res.status(200).send(randomFortune)  
     },
-    addCompliment: (req, res) => {
+    addFortune: (req, res) => {
         let {text} = req.body
-        let newCompliment = {
-            id: globalId,
-            text
+        let newFortune = {
+            text,
+            id: globalId
+            
         }
-        compliment.push(newCompliment)
-        res.status(200).send(compliment)
+        fortuneList.push(newFortune)
+        res.status(200).send(fortuneList)
         globalId++
     },
-    changeCompliment: (req, res) => {
+    deleteFortune: (req, res) => {
+        const {id} = req.params
+        let index = fortuneList.findIndex(fortune => fortune.id === +id)
+        fortuneList.splice(index, 1)
+        console.log(`delete`, fortuneList)
+
+        res.status(200).send(fortunes)
+    },
+    changeFortune: (req, res) => {
         let {id} = req.params
         let {text} = req.body
-        let index = compliment.findIndex(elem => +elem.id === +id)
-        res.status(200).send(compliment)
+        let changedFortune = {text, id}
+        let index = fortuneList.findIndex(fortune => fortune.id === +id)
+        fortuneList.splice(index, 1, changedFortune)
+
+        res.status(200).send(fortuneList)
     }
-}  
-
-
-
-
+}
 
 
 
