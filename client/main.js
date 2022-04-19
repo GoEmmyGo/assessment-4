@@ -4,8 +4,8 @@
 //.onclick
 document.getElementById("complimentButton").onclick = function () {
     axios.get("http://localhost:4000/api/compliment")
-        .then(function (response) {
-          const data = response.data
+        .then(function (res) {
+          const data = res.data
           alert(data)
         })
   }
@@ -23,9 +23,9 @@ const changeZone = document.getElementById(`change-zone`)
 
 //Loop through the array of fortunes and display the fortune at the index of i
 const handleDisplay = (arr) => {
-    while (fortuneDisplay.childNodes.length > 0){
-        fortuneDisplay.removeChild(fortuneDisplay.lastChild)
-    }
+    // while (fortuneDisplay.childNodes.length > 0){
+    //     fortuneDisplay.removeChild(fortuneDisplay.lastChild)
+    // }
 
     for (let i = 0; i < arr.length; i++){
         displayFortune(arr[i])
@@ -37,7 +37,7 @@ document.getElementById("fortuneButton").onclick = function () {
     axios.get("http://localhost:4000/api/fortune")
         .then(res => {
             handleDisplay(res.data)
-            alert(data)
+            alert(res.data.text)
         })
   }
 
@@ -50,7 +50,7 @@ const displayFortune = fortune => {
     fortuneContainer.className = `fortune-container`
     fortuneContainer.innnerhtml = `<p> ${fortune.text} </p>`
     
-    fortuneDisplay.appendChild(fortune.container)
+    fortuneDisplay.appendChild(fortuneContainer)
 }
 
 //these will be referenced repeatedly in the following code, now it will not need to be embedded in each function
@@ -67,22 +67,22 @@ const getFortune = () => {
         .then(fortuneCallback)
         .catch(errCallback)
 }
-
+// 
 const addFortune = e => {
     e.preventDefault()
 
     const newFortune = {
-        text: document.getElementById(`new-fortune`).value
+        text: document.getElementById(`add-text`).value
     }
     axios
         .post(`${baseURL}`, newFortune)
         .then(fortuneCallback)
         .catch(errCallback)
     
-        document.getElementById(`new-fortune`).value = ``
+        document.getElementById(`add-text`).value = ``
 }
 
-addForm.addEventListener(`Add your fortune`, addFortune)
+addForm.addEventListener(`submit`, addFortune)
 
 const deleteFortune = id => {
     axios

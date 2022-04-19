@@ -17,7 +17,7 @@ module.exports = {
         res.status(200).send(randomCompliment)
     },
     getFortune: (req, res) => {
-        res.status(200).send(fortuneList)
+        // res.status(200).send(fortuneList)
         // choose random fortune
         let randomIndex = Math.floor(Math.random() * fortuneList.length)
         let randomFortune = fortuneList[randomIndex]
@@ -31,6 +31,7 @@ module.exports = {
             
         }
         fortuneList.push(newFortune)
+        console.log(fortuneList)
         res.status(200).send(fortuneList)
         globalId++
     },

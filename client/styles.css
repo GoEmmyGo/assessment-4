@@ -1,7 +1,7 @@
-body {
+/* body {
     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.yVP8iC7CQ3nz3U6no4lXtQHaE8%26pid%3DApi&f=1);
     background-repeat: repeat;
-}
+} */
 
 
 body {
@@ -15,12 +15,12 @@ body {
    opacity: 50%;
 } */
 
-/* h1, h3 {
+h1, h3 {
     font-family: "Trebuchet MS";
     color: whitesmoke;
     /* background-color: lavender; 
     text-shadow: 5px 5px 5px, black;
 }
- */
+
 
 
