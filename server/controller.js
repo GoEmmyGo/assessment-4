@@ -21,7 +21,8 @@ module.exports = {
         // choose random fortune
         let randomIndex = Math.floor(Math.random() * fortuneList.length)
         let randomFortune = fortuneList[randomIndex]
-        res.status(200).send(randomFortune)  
+        res.status(200).send(randomFortune) 
+        console.log(fortuneList) 
     },
     addFortune: (req, res) => {
         let {text} = req.body
@@ -42,6 +43,7 @@ module.exports = {
         console.log(`delete`, fortuneList)
 
         res.status(200).send(fortunes)
+        console.log(fortuneList)
     },
     changeFortune: (req, res) => {
         let {id} = req.params
@@ -51,6 +53,7 @@ module.exports = {
         fortuneList.splice(index, 1, changedFortune)
 
         res.status(200).send(fortuneList)
+        console.log(changedFortune)
     }
 }
 

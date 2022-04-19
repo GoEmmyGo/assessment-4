@@ -2,6 +2,23 @@
 // const form = document.querySelector(`form`)
 
 //.onclick
+
+//.addeventlistener
+
+//index.html elements that have features, connecting these so that the can have interactivity
+const complimentContainer = document.getElementById(`compliment-container`)
+const fortuneDisplay = document.getElementById(`fortune-display`)
+
+const addForm = document.getElementById(`add-form`)
+const deleteForm = document.getElementById(`delete-form`)
+const changeForm = document.getElementById(`change-form`)
+const changeZone = document.getElementById(`change-zone`)
+
+addForm.addEventListener(`submit`, addFortune)
+deleteForm.addEventListener(`submit`, deleteFortune)
+changeForm.addEventListener(`submit`, changeFortune)
+
+
 document.getElementById("complimentButton").onclick = function () {
     axios.get("http://localhost:4000/api/compliment")
         .then(function (res) {
@@ -9,17 +26,13 @@ document.getElementById("complimentButton").onclick = function () {
           alert(data)
         })
   }
-
-  //.addeventlistener
- 
-//index.html elements that have features, connecting these so that the can have interactivity
-const complimentContainer = document.getElementById(`compliment-container`)
-const fortuneDisplay = document.getElementById(`fortune-display`)
-const addForm = document.getElementById(`add-form`)
-const deleteForm = document.getElementById(`delete-form`)
-const changeForm = document.getElementById(`change-form`)
-const changeZone = document.getElementById(`change-zone`)
-
+document.getElementById("fortuneButton").onclick = function () {
+    axios.get("http://localhost:4000/api/fortune")
+        .then(res => {
+            handleDisplay(res.data)
+            alert(res.data.text)
+        })
+  }
 
 //Loop through the array of fortunes and display the fortune at the index of i
 const handleDisplay = (arr) => {
@@ -33,13 +46,6 @@ const handleDisplay = (arr) => {
 }
 
 
-document.getElementById("fortuneButton").onclick = function () {
-    axios.get("http://localhost:4000/api/fortune")
-        .then(res => {
-            handleDisplay(res.data)
-            alert(res.data.text)
-        })
-  }
 
 
 //take in a fortune object and log in the console
@@ -82,7 +88,6 @@ const addFortune = e => {
         document.getElementById(`add-text`).value = ``
 }
 
-addForm.addEventListener(`submit`, addFortune)
 
 const deleteFortune = id => {
     axios
@@ -99,21 +104,18 @@ const changeFortune = fortune => {
     //add this new info to this class section
     changeZone.appendChild(changeForm)
     //listen for when this butting is pressed so that that data can then be added
-    changeForm.addEventListener(`submit`, e => {
-        e.preventDefault()
 
-        let changes = {
-            text: document.getElementById(`text-input`).value
-        }
-        
-        axios
-            .put(`${baseURL}/${fortune.id}`, changes)
-            .then(res => {
-                handleDisplay(res.data)
-                changeForm.remove()
-            })
-            .catch(errCallback)
-    })
+    let changes = {
+        text: document.getElementById(`text-input`).value
+    }
+    
+    axios
+        .put(`${baseURL}/${fortune.id}`, changes)
+        .then(res => {
+            handleDisplay(res.data)
+            changeForm.remove()
+        })
+        .catch(errCallback)
 }
 
 getFortune()
